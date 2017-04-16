@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.jiangew.movieService";
+option java_outer_classname = "MovieProto";
+
+package MovieService;
+
+//service definition
+service MovieService {
+
+    rpc ListMovies (ActorId) returns (MovieList) {
+    }
+
+    rpc GetMovies (ActorId) returns (stream Movie) {
+    }
+}
+
+message ActorId {
+    int32 id = 1;
+}
+
+message Actor {
+    int32 id = 1;
+    string name = 2;
+}
+
+message Movie {
+    int32 id = 1;
+    string name = 2;
+    Actor actor = 3;
+}
+
+message MovieList {
+    repeated Movie movies = 1;
+}
